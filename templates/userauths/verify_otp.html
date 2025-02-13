@@ -1,0 +1,26 @@
+
+
+{% extends 'partials/base.html' %}
+{% load static %}
+{% block content %}
+    <div class="container">
+        <h1>Verify Account</h1>
+        <p>A verification code has been sent to your email address.<br>Please enter the code below.</p>
+        <form method="POST">
+            {% csrf_token %}
+            <input type="text" name="otp"class="form-control" placeholder="123456" required>
+            <button type="submit" class="btn btn-primary">Verify</button>
+        </form>
+        <div class="note">
+            <p><strong>If you don't get an email from us within 5 minutes, one of the following could have happened:</strong></p>
+            <ul>
+                <li>The email is in your spam/junk folder.</li>
+                <li>You entered an incorrect or invalid email address.</li>
+                <li>We can’t send emails to the email address provided.</li>
+            </ul>
+        </div>
+        <p>Don't receive code? <a href="{% url 'userauths:resend-otp' %}">Resend OTP</a></p>
+    </div>
+{% endblock %}
+
+
